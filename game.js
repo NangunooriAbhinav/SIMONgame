@@ -3,6 +3,7 @@ var gamePattern = [];
 var buttonColor = ["red", "blue", "green", "yellow"];
 var level = 0;
 var toggle = 1;
+var mediaQuery = window.matchMedia('(max-width: 1024px)')
 
 function Playsound(name) {
     var audio = new Audio("sounds/" + name + ".mp3");
@@ -53,7 +54,14 @@ function checkAnswer(index) {
             $("body").removeClass("game-over");
         }, 200);
 
-        $("h1").text("Game Over, Press Any Key to Restart");
+        // $("h1").text("Game Over, Press Any Key to Restart");
+        if (mediaQuery.matches) {
+            $("h1").text("Game Over, Press Anywhere to Restart");
+        }
+        else {
+            $("h1").text("Game Over, Press Any Key to Restart");
+        }
+
         toggle = 1;
         level = 0;
     }
@@ -62,23 +70,27 @@ function checkAnswer(index) {
 $(".btn").on("click", function (event) {
     var userChosen = event.target.id;
     userPattern.push(userChosen);
-    console.log(userPattern);
     animatePress(userChosen);
     Playsound(userChosen);
     checkAnswer(userPattern.length - 1);
 });
 
-$(document).on("keypress", function () {
-    if (toggle != 0) {
-        toggle = 0;
-        nextSequence();
-    }
-});
+if (mediaQuery.matches) {
+    $("h1").text("Press Anywhere to Start");
 
-$("body").on("touchstart", function () {
-    if (toggle != 0) {
-        toggle = 0;
-        nextSequence();
-    }
-});
+    $("body").on("touchstart", function () {
+        if (toggle != 0) {
+            toggle = 0;
+            nextSequence();
+        }
+    });
+}
+else {
+    $(document).on("keypress", function () {
+        if (toggle != 0) {
+            toggle = 0;
+            nextSequence();
+        }
+    });
+}
 
