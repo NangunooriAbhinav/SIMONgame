@@ -36,7 +36,9 @@ function checkAnswer(index) {
 
     if (gamePattern[index] === userPattern[index]) {
         if (gamePattern.length == userPattern.length) {
-            setInterval(nextSequence(), 1000);
+            setTimeout(function () {
+                nextSequence()
+            }, 1000);
             userPattern = [];
         }
     }
