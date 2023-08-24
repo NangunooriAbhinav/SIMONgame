@@ -44,7 +44,8 @@ function checkAnswer(index) {
         }
     }
     else {
-        var audio = new Audio("sounds/wrong.mp3")
+        var audio = new Audio("sounds/wrong.mp3");
+        audio.play();
         userPattern = [];
         gamePattern = [];
 
