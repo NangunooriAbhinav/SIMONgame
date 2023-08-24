@@ -1,19 +1,35 @@
 body {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
   text-align: center;
   background-color: #011f3f;
+  margin: 0;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 
 #level-title {
   font-family: "Press Start 2P", cursive;
   font-size: 3rem;
-  margin: 5%;
+  margin-bottom: 5%;
+  margin-top: 0;
+  padding-top: 3%;
   color: #fef2bf;
 }
 
 .container {
+  position: relative;
   display: block;
   width: 50%;
+  height: 100vh;
   margin: auto;
+}
+
+.row {
+  position: absolute;
+  top: -8%;
+  height: fit-content;
 }
 
 .btn {
@@ -49,4 +65,23 @@ body {
 .pressed {
   box-shadow: 0 0 20px white;
   background-color: grey;
+}
+
+@media (width < 1024px) {
+  .container {
+    width: 70%;
+    height: 40%;
+  }
+
+  #level-title {
+    position: relative;
+    top: 20%;
+    padding: 5%;
+    margin: 0;
+    font-size: 2.5rem;
+  }
+
+  .row {
+    top: 0;
+  }
 }

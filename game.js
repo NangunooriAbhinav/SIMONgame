@@ -75,3 +75,10 @@ $(document).on("keypress", function () {
     }
 });
 
+$("body").on("touchstart", function () {
+    if (toggle != 0) {
+        toggle = 0;
+        nextSequence();
+    }
+});
+
